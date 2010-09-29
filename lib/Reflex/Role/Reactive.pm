@@ -414,9 +414,13 @@ sub emit {
 			return;
 		}
 
+		# TODO - At this point, do we walk up the ownership tree looking
+		# for a promise?  That would allow events to bubble out of objects.
+
 		$deliver_event = "promise";
 		return unless exists $self->watchers_by_event()->{$deliver_event};
-		# Fall through.
+
+		# Fall through if the promise exists.
 	}
 
 	# This event is watched.  Broadcast it to watchers.
