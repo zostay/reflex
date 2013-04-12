@@ -389,6 +389,8 @@ Reflex is open source, and we welcome involvement.
 
 Chris Fedde, CFEDDE on CPAN
 
+Sterling Hanenkamp
+
 =over 2
 
 =item * L<https://github.com/rcaputo/reflex>

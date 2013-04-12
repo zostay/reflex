@@ -14,6 +14,11 @@ use Reflex::Event::Octets;
 use Reflex::Event::Error;
 use Reflex::Event::EOF;
 
+has '+wheel' => (
+	isa          => 'Maybe[POE::Wheel::Run]',
+	handles      => [ qw( kill ) ],
+);
+
 # These are class methods, returning static class data.
 # TODO - What's the proper way to do this with Moose?
 
@@ -92,11 +97,6 @@ sub BUILD {
 sub on_sigchld_exit {
 	my ($self, $event) = @_;
 	$self->re_emit( $event, -name => 'signal' );
-}
-
-sub kill {
-	my $self = shift;
-	$self->wheel()->kill(@_);
 }
 
 __PACKAGE__->meta->make_immutable;
@@ -221,7 +221,6 @@ L<Reflex::POE::Wheel>
 L<Reflex/ACKNOWLEDGEMENTS>
 L<Reflex/ASSISTANCE>
 L<Reflex/AUTHORS>
-L<Reflex/BUGS>
 L<Reflex/BUGS>
 L<Reflex/CONTRIBUTORS>
 L<Reflex/COPYRIGHT>
